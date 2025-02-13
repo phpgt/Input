@@ -13,9 +13,9 @@ class Trigger {
 	/** @var array<string> */
 	protected array $keyMatches;
 	/** @var array<string> */
-	protected array $with;
+	protected array $select;
 	/** @var array<string> */
-	protected array $without;
+	protected array $selectAllExcept;
 	/** @var array<Callback> */
 	protected array $callbacks;
 	protected ?bool $hasFired;
@@ -27,8 +27,8 @@ class Trigger {
 
 		$this->matches = [];
 		$this->keyMatches = [];
-		$this->with = [];
-		$this->without = [];
+		$this->select = [];
+		$this->selectAllExcept = [];
 		$this->callbacks = [];
 		$this->hasFired = null;
 	}
@@ -49,27 +49,39 @@ class Trigger {
 		return $this;
 	}
 
+	public function select(string...$keys):self {
+		foreach($keys as $key) {
+			$this->select []= $key;
+		}
+
+		return $this;
+	}
+	/** @deprecated Use select() instead to avoid ambiguity with immutable `with` functions */
 	public function with(string...$keys):self {
+		return $this->select(...$keys);
+	}
+
+	public function selectAllExcept(string...$keys):self {
 		foreach($keys as $key) {
-			$this->with []= $key;
+			$this->selectAllExcept []= $key;
 		}
 
 		return $this;
 	}
-
+	/** @deprecated Use selectAllExcept() instead to avoid ambiguity with immutable `with` functions */
 	public function without(string...$keys):self {
-		foreach($keys as $key) {
-			$this->without []= $key;
-		}
+		return $this->selectAllExcept(...$keys);
+	}
+
+	public function selectAll():self {
+		$this->select = [];
+		$this->selectAllExcept = [];
 
 		return $this;
 	}
-
+	/** @deprecated Use selectAll() instead to avoid ambiguity with immutable `with` functions */
 	public function withAll():self {
-		$this->with = [];
-		$this->without = [];
-
-		return $this;
+		return $this->selectAll();
 	}
 
 	public function setTrigger(string $key, string $value):self {
@@ -142,8 +154,8 @@ class Trigger {
 	protected function callCallbacks():void {
 		$fields = $this->inputDataFactory->create(
 			$this->input,
-			$this->with,
-			$this->without
+			$this->select,
+			$this->selectAllExcept
 		);
 
 		foreach($this->callbacks as $callback) {

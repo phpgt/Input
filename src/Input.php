@@ -23,6 +23,7 @@ use Gt\Input\InputData\QueryStringInputData;
  * @implements ArrayAccess<string, ?string>
  * @implements Iterator<string, ?string>
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class Input implements ArrayAccess, Countable, Iterator {
 	use InputValueGetter;
@@ -235,7 +236,7 @@ class Input implements ArrayAccess, Countable, Iterator {
 	/**
 	 * Return a Trigger that will only pass the provided keys to its callback.
 	 */
-	public function with(string...$keys):Trigger {
+	public function select(string...$keys):Trigger {
 		foreach($keys as $key) {
 			if(!$this->parameters->contains($key)) {
 				throw new MissingInputParameterException($key);
@@ -245,19 +246,32 @@ class Input implements ArrayAccess, Countable, Iterator {
 		return $this->newTrigger("with", ...$keys);
 	}
 
+	/** @deprecated Use select() instead to avoid ambiguity with immutable `with` functions */
+	public function with(string...$keys):Trigger {
+		return $this->select(...$keys);
+	}
+
 	/**
 	 * Return a Trigger that will pass all keys apart from the provided
 	 * keys to its callback.
 	 */
-	public function without(string...$keys):Trigger {
+	public function selectAllExcept(string...$keys):Trigger {
 		return $this->newTrigger("without", ...$keys);
+	}
+	/** @deprecated Use selectAllExcept() instead to avoid ambiguity with immutable `with` functions */
+	public function without(string...$keys):Trigger {
+		return $this->selectAllExcept(...$keys);
 	}
 
 	/**
 	 * Return a Trigger that will pass all keys to its callback.
 	 */
-	public function withAll():Trigger {
+	public function selectAll():Trigger {
 		return $this->newTrigger("withAll");
+	}
+	/** @deprecated Use selectAll() instead to avoid ambiguity with immutable `with` functions */
+	public function withAll():Trigger {
+		return $this->selectAll();
 	}
 
 	protected function newTrigger(string $functionName, string...$args):Trigger {
