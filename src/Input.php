@@ -252,10 +252,11 @@ class Input implements ArrayAccess, Countable, Iterator {
 		return $this->select(...$keys);
 	}
 
+	/** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
 	public function selectPrefix(string $prefix):Trigger {
 		$keys = [];
 
-		foreach(array_keys($this->parameters) as $key) {
+		foreach($this->parameters as $key => $param) {
 			if(str_starts_with($key, $prefix)) {
 				array_push($keys, $key);
 			}
