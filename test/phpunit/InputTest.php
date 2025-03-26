@@ -710,6 +710,30 @@ class InputTest extends TestCase {
 		self::assertSame(123, $sut->getInt("id"));
 	}
 
+	public function testSelectPrefix_noMatch():void {
+		$sut = new Input(["id" => 123]);
+		$trigger = $sut->selectPrefix("io_");
+
+		$triggered = false;
+		$trigger->call(function(...$args)use(&$triggered) {
+			$triggered = true;
+		});
+		$trigger->fire();
+		self::assertFalse($triggered);
+	}
+
+	public function testSelectPrefix_match():void {
+		$sut = new Input(["id" => 123, "io_database" => "connect"]);
+		$trigger = $sut->selectPrefix("io_");
+
+		$triggered = false;
+		$trigger->call(function(...$args)use(&$triggered) {
+			$triggered = true;
+		});
+		$trigger->fire();
+		self::assertTrue($triggered);
+	}
+
 	public static function dataRandomGetPost():array {
 		$data = [];
 
