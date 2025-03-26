@@ -3,6 +3,7 @@ namespace Gt\Input;
 
 use ArrayAccess;
 use Countable;
+use Gt\Input\Trigger\NeverTrigger;
 use Gt\Json\JsonDecodeException;
 use Gt\Json\JsonObject;
 use Gt\Json\JsonObjectBuilder;
@@ -243,12 +244,29 @@ class Input implements ArrayAccess, Countable, Iterator {
 			}
 		}
 
-		return $this->newTrigger("with", ...$keys);
+		return $this->newTrigger("select", ...$keys);
 	}
 
 	/** @deprecated Use select() instead to avoid ambiguity with immutable `with` functions */
 	public function with(string...$keys):Trigger {
 		return $this->select(...$keys);
+	}
+
+	public function selectPrefix(string $prefix):Trigger {
+		$keys = [];
+
+		foreach($this->parameters as $key => $param) {
+			if(str_starts_with($key, $prefix)) {
+				array_push($keys, $key);
+			}
+		}
+
+		if($keys) {
+			return $this->when(...$keys);
+		}
+		else {
+			return new NeverTrigger($this);
+		}
 	}
 
 	/**
