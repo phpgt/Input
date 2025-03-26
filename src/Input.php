@@ -255,7 +255,7 @@ class Input implements ArrayAccess, Countable, Iterator {
 	public function selectPrefix(string $prefix):Trigger {
 		$keys = [];
 
-		foreach($this->parameters as $key => $param) {
+		foreach(array_keys($this->parameters) as $key) {
 			if(str_starts_with($key, $prefix)) {
 				array_push($keys, $key);
 			}
