@@ -95,3 +95,9 @@ Features at a glance
 + Coming soon: working with huge files by streaming them to PHP, efficiently managing memory in the process.
 
 [tsg]: https://php.gt/typesafegetter
+
+# Proudly sponsored by
+
+[JetBrains Open Source sponsorship program](https://www.jetbrains.com/community/opensource/)
+
+[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://www.jetbrains.com/community/opensource/)
