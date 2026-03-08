@@ -54,12 +54,10 @@ class Input implements ArrayAccess, Countable, Iterator {
 		array $post = [],
 		array $files = [],
 		string $bodyPath = "php://input",
-		?string $requestMethod = null,
+		?string $requestMethod = "GET",
 	) {
 		$this->bodyStream = new BodyStream($bodyPath);
-		$this->requestMethod = strtoupper(
-			$requestMethod ?? ($_SERVER["REQUEST_METHOD"] ?? "GET")
-		);
+		$this->requestMethod = strtoupper($requestMethod);
 
 		$this->queryStringParameters = new QueryStringInputData($get);
 		$this->bodyParameters = new BodyInputData($post);
