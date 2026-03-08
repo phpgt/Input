@@ -11,6 +11,7 @@ use Iterator;
 use Psr\Http\Message\StreamInterface;
 use Gt\Input\Trigger\Trigger;
 use Gt\Input\InputData\InputData;
+use Gt\Input\InputData\Datum\StreamNotAvailableException;
 use Gt\Input\InputData\Datum\InputDatum;
 use Gt\Input\InputData\KeyValueArrayAccess;
 use Gt\Input\InputData\KeyValueCountable;
@@ -38,6 +39,7 @@ class Input implements ArrayAccess, Countable, Iterator {
 	const DATA_COMBINED = "combined";
 
 	protected BodyStream $bodyStream;
+	protected string $requestMethod;
 	protected QueryStringInputData $queryStringParameters;
 	protected BodyInputData $bodyParameters;
 
@@ -52,8 +54,12 @@ class Input implements ArrayAccess, Countable, Iterator {
 		array $post = [],
 		array $files = [],
 		string $bodyPath = "php://input",
+		?string $requestMethod = null,
 	) {
 		$this->bodyStream = new BodyStream($bodyPath);
+		$this->requestMethod = strtoupper(
+			$requestMethod ?? ($_SERVER["REQUEST_METHOD"] ?? "GET")
+		);
 
 		$this->queryStringParameters = new QueryStringInputData($get);
 		$this->bodyParameters = new BodyInputData($post);
@@ -70,6 +76,19 @@ class Input implements ArrayAccess, Countable, Iterator {
 	 * Returns the input payload as a streamable HTTP request body.
 	 */
 	public function getStream():StreamInterface {
+		return $this->bodyStream;
+	}
+
+	/**
+	 * Returns a streamable PUT file upload body.
+	 */
+	public function getPutFileStream():BodyStream {
+		if($this->requestMethod !== "PUT") {
+			throw new StreamNotAvailableException(
+				"PUT file stream is only available for PUT requests."
+			);
+		}
+
 		return $this->bodyStream;
 	}
 

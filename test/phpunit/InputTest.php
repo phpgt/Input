@@ -6,6 +6,7 @@ use Gt\Input\DataNotCompatibleFormatException;
 use Gt\Input\Input;
 use Gt\Input\InputData\Datum\FileUpload;
 use Gt\Input\InputData\Datum\InputDatum;
+use Gt\Input\InputData\Datum\StreamNotAvailableException;
 use Gt\Input\InputData\InputData;
 use Gt\Input\InvalidInputMethodException;
 use Gt\Input\MissingInputParameterException;
@@ -60,6 +61,31 @@ class InputTest extends TestCase {
 		$input = new Input([],[],[],$tmpPath);
 		$body = $input->getStream();
 		self::assertEquals($testMessage, (string)$body);
+	}
+
+	public function testGetPutFileStream_putRequest():void {
+		$testMessage = "This is a PUT file test message";
+		$tmpPath = implode(DIRECTORY_SEPARATOR, [
+			sys_get_temp_dir(),
+			"phpgt",
+			"input",
+			"test",
+			uniqid(),
+		]);
+		mkdir(dirname($tmpPath), 0775, true);
+		touch($tmpPath);
+		$fh = fopen($tmpPath, "r+");
+		fwrite($fh, $testMessage);
+
+		$input = new Input([], [], [], $tmpPath, "PUT");
+		$body = $input->getPutFileStream();
+		self::assertEquals($testMessage, (string)$body);
+	}
+
+	public function testGetPutFileStream_notPutRequest():void {
+		self::expectException(StreamNotAvailableException::class);
+		$input = new Input([], [], [], "php://input", "POST");
+		$input->getPutFileStream();
 	}
 
 	/** @dataProvider dataRandomGetPost */
