@@ -25,6 +25,28 @@ class TriggerTest extends TestCase {
 		self::assertFalse($trigger->fire());
 	}
 
+	public function testWhenWithKVP_missing():void {
+		$sut = new Trigger(new Input([
+			"name" => "Cody",
+			"colour" => "orange",
+		]));
+		$sut->when([
+			"colour" => "white",
+		]);
+		self::assertFalse($sut->fire());
+	}
+
+	public function testWhenWithKVP():void {
+		$sut = new Trigger(new Input([
+			"name" => "Cody",
+			"colour" => "orange",
+		]));
+		$sut->when([
+			"colour" => "orange",
+		]);
+		self::assertTrue($sut->fire());
+	}
+
 	/** @dataProvider dataInput */
 	public function testWithSingleKey(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, 1);
