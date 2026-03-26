@@ -3,9 +3,9 @@ namespace Gt\Input\Test;
 
 use DateTime;
 use Gt\Input\DataNotCompatibleFormatException;
+use Gt\Input\DataNotFileUploadException;
 use Gt\Input\Input;
 use Gt\Input\InputData\Datum\FileUpload;
-use Gt\Input\InputData\Datum\InputDatum;
 use Gt\Input\InputData\Datum\StreamNotAvailableException;
 use Gt\Input\InputData\InputData;
 use Gt\Input\InvalidInputMethodException;
@@ -154,6 +154,13 @@ class InputTest extends TestCase {
 		$input = new Input([], [], []);
 		$file = $input->getFile("exampleFile");
 		self::assertNull($file);
+	}
+
+	public function testGetFile_uploadInPostWithoutFiles_throwsHelpfulException():void {
+		$input = new Input([], ["upload" => "photo.jpg"], []);
+		self::expectException(DataNotFileUploadException::class);
+		self::expectExceptionMessage('enctype="multipart/form-data"');
+		$input->getFile("upload");
 	}
 
 	/** @dataProvider dataRandomGetPost */

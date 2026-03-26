@@ -77,6 +77,9 @@ trait InputValueGetter {
 		$file = $params[$key] ?? null;
 
 		if(is_null($file)) {
+			if($this->bodyParameters->contains($key)) {
+				throw new DataNotFileUploadException($key);
+			}
 			return null;
 		}
 
@@ -96,6 +99,10 @@ trait InputValueGetter {
 	public function getMultipleFile(string $key):array {
 		$multipleFileUpload = $this->get($key);
 		if(!$multipleFileUpload instanceof MultipleInputDatum) {
+			if($this->bodyParameters->contains($key)) {
+				throw new DataNotFileUploadException($key);
+			}
+
 			throw new InputException("Parameter '$key' is not a multiple file input.");
 		}
 
