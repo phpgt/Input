@@ -13,6 +13,7 @@ trait KeyValueArrayAccess {
 		if($this instanceof FileUploadInputData) {
 			return $this->getFile($offset);
 		}
+		/** @phpstan-ignore-next-line */
 		elseif(is_a($this, Input::class) || is_a($this, InputData::class)) {
 			if($this->contains($offset)) {
 				return $this->get($offset);
