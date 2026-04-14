@@ -18,18 +18,19 @@
 
 	"autoload": {
 		"psr-4": {
+			"GT\\Input\\": "./src",
 			"Gt\\Input\\": "./src"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
+			"GT\\Input\\Test\\": "./test/phpunit",
 			"Gt\\Input\\Test\\": "./test/phpunit"
 		}
 	},
 
 	"scripts": {
 		"phpunit": "vendor/bin/phpunit --configuration phpunit.xml",
-		"phpunit:coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration phpunit.xml --coverage-text",
 		"phpstan": "vendor/bin/phpstan analyse --level 6 src --memory-limit 256M",
 		"phpcs": "vendor/bin/phpcs src --standard=phpcs.xml",
 		"phpmd": "vendor/bin/phpmd src/ text phpmd.xml",
@@ -39,6 +40,12 @@
 			"@phpcs",
 			"@phpmd"
 		]
+	},
+
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.x-dev"
+		}
 	},
 
 	"funding": [

@@ -1,8 +1,8 @@
 <?php
-namespace Gt\Input\Test\Helper;
+namespace GT\Input\Test\Helper;
 
-use Gt\Input\Input;
-use Gt\Input\InputData\InputData;
+use GT\Input\Input;
+use GT\Input\InputData\InputData;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 

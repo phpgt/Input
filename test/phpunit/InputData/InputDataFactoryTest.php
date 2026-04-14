@@ -1,9 +1,9 @@
 <?php
-namespace Gt\Input\Test\InputData;
+namespace GT\Input\Test\InputData;
 
-use Gt\Input\Input;
-use Gt\Input\InputData\InputDataFactory;
-use Gt\Input\WithWithoutClashingException;
+use GT\Input\Input;
+use GT\Input\InputData\InputDataFactory;
+use GT\Input\WithWithoutClashingException;
 use PHPUnit\Framework\TestCase;
 
 class InputDataFactoryTest extends TestCase {

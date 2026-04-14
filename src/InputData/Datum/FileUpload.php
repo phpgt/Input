@@ -1,9 +1,9 @@
 <?php
-namespace Gt\Input\InputData\Datum;
+namespace GT\Input\InputData\Datum;
 
 use Gt\Http\Stream;
-use Gt\Input\UploadedFileMoveException;
-use Gt\Input\UploadedFileSecurityException;
+use GT\Input\UploadedFileMoveException;
+use GT\Input\UploadedFileSecurityException;
 use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UploadedFileInterface;

@@ -1,4 +1,4 @@
 <?php
-namespace Gt\Input\InputData;
+namespace GT\Input\InputData;
 
 class CombinedInputData extends InputData {}

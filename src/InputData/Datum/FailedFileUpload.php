@@ -1,5 +1,5 @@
 <?php
-namespace Gt\Input\InputData\Datum;
+namespace GT\Input\InputData\Datum;
 
 class FailedFileUpload extends FileUpload {
 	protected int $errorCode;

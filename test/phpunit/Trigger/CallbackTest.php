@@ -1,8 +1,8 @@
 <?php
-namespace Gt\Input\Test\Trigger;
+namespace GT\Input\Test\Trigger;
 
-use Gt\Input\InputData\InputData;
-use Gt\Input\Trigger\Callback;
+use GT\Input\InputData\InputData;
+use GT\Input\Trigger\Callback;
 use PHPUnit\Framework\TestCase;
 
 class CallbackTest extends TestCase {

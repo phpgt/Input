@@ -1,11 +1,11 @@
 <?php
-namespace Gt\Input\Test\Trigger;
+namespace GT\Input\Test\Trigger;
 
-use Gt\Input\CallOrOutOfSequenceException;
-use Gt\Input\Input;
-use Gt\Input\InputData\InputData;
-use Gt\Input\Test\Helper\Helper;
-use Gt\Input\Trigger\Trigger;
+use GT\Input\CallOrOutOfSequenceException;
+use GT\Input\Input;
+use GT\Input\InputData\InputData;
+use GT\Input\Test\Helper\Helper;
+use GT\Input\Trigger\Trigger;
 use PHPUnit\Framework\TestCase;
 
 class TriggerTest extends TestCase {

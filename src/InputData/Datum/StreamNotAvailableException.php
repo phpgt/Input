@@ -1,6 +1,6 @@
 <?php
-namespace Gt\Input\InputData\Datum;
+namespace GT\Input\InputData\Datum;
 
-use Gt\Input\InputException;
+use GT\Input\InputException;
 
 class StreamNotAvailableException extends InputException {}

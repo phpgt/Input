@@ -1,7 +1,7 @@
 <?php
-namespace Gt\Input\InputData;
+namespace GT\Input\InputData;
 
-use Gt\Input\InputData\Datum\InputDatum;
+use GT\Input\InputData\Datum\InputDatum;
 
 trait KeyValueIterator {
 	/** @var int */

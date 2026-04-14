@@ -1,5 +1,5 @@
 <?php
-namespace Gt\Input;
+namespace GT\Input;
 
 use Gt\Http\Stream;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Gt\Input\Trigger;
+namespace GT\Input\Trigger;
 
 class NeverTrigger extends Trigger {
 	// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
