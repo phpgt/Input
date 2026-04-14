@@ -1,5 +1,5 @@
 <?php
-namespace Gt\Input\Test\Helper;
+namespace GT\Input\Test\Helper;
 
 use ReflectionClass;
 use ReflectionMethod;

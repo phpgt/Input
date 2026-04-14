@@ -1,8 +1,8 @@
 <?php
-namespace Gt\Input\InputData;
+namespace GT\Input\InputData;
 
-use Gt\Input\InputData\Datum\FailedFileUpload;
-use Gt\Input\InputData\Datum\FileUpload;
+use GT\Input\InputData\Datum\FailedFileUpload;
+use GT\Input\InputData\Datum\FileUpload;
 
 class FileUploadInputData extends InputData {
 	/**

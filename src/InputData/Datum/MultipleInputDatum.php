@@ -1,8 +1,8 @@
 <?php
-namespace Gt\Input\InputData\Datum;
+namespace GT\Input\InputData\Datum;
 
 use ArrayAccess;
-use Gt\Input\ImmutableObjectModificationException;
+use GT\Input\ImmutableObjectModificationException;
 use Iterator;
 
 /**
