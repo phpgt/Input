@@ -11,19 +11,19 @@ Type-safe functions allow more predictable functionality, such as `$input->getFi
 ***
 
 <a href="https://github.com/PhpGt/Input/actions" target="_blank">
-	<img src="https://badge.status.php.gt/input-build.svg" alt="PHP.Gt/Input build status" />
+	<img src="https://badge.status.php.gt/input-build.svg" alt="PHP.GT/Input build status" />
 </a>
 <a href="https://app.codacy.com/gh/PhpGt/Input" target="_blank">
-	<img src="https://badge.status.php.gt/input-quality.svg" alt="PHP.Gt/Input code quality" />
+	<img src="https://badge.status.php.gt/input-quality.svg" alt="PHP.GT/Input code quality" />
 </a>
 <a href="https://app.codecov.io/gh/PhpGt/Input" target="_blank">
-	<img src="https://badge.status.php.gt/input-coverage.svg" alt="PHP.Gt/Input code coverage" />
+	<img src="https://badge.status.php.gt/input-coverage.svg" alt="PHP.GT/Input code coverage" />
 </a>
 <a href="https://packagist.org/packages/phpgt/input" target="_blank">
-	<img src="https://badge.status.php.gt/input-version.svg" alt="PHP.Gt/Input latest release" />
+	<img src="https://badge.status.php.gt/input-version.svg" alt="PHP.GT/Input latest release" />
 </a>
 <a href="http://www.php.gt/input" target="_blank">
-	<img src="https://badge.status.php.gt/input-docs.svg" alt="PHP.G/Input documentation" />
+	<img src="https://badge.status.php.gt/input-docs.svg" alt="PHP.GT/Input documentation" />
 </a>
 
 Example usage
