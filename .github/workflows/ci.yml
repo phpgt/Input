@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+env:
+  # Http depends on Input, so Composer must know the root package version.
+  COMPOSER_ROOT_VERSION: 1.4.x-dev
+
 jobs:
   composer:
     runs-on: ubuntu-latest
