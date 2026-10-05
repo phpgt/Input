@@ -4,9 +4,9 @@ namespace GT\Input;
 use ArrayAccess;
 use Countable;
 use GT\Input\Trigger\NeverTrigger;
-use Gt\Json\JsonDecodeException;
-use Gt\Json\JsonObject;
-use Gt\Json\JsonObjectBuilder;
+use GT\Json\JSONDecodeException;
+use GT\Json\JSONObject;
+use GT\Json\JSONObjectBuilder;
 use Iterator;
 use Psr\Http\Message\StreamInterface;
 use GT\Input\Trigger\Trigger;
@@ -216,13 +216,13 @@ class Input implements ArrayAccess, Countable, Iterator {
 		}
 	}
 
-	public function getBodyJson():?JsonObject {
-		$jsonBuilder = new JsonObjectBuilder();
+	public function getBodyJson():?JSONObject {
+		$jsonBuilder = new JSONObjectBuilder();
 
 		try {
 			return $jsonBuilder->fromJsonString($this->bodyStream->getContents());
 		}
-		catch(JsonDecodeException) {
+		catch(JSONDecodeException) {
 			return null;
 		}
 	}
