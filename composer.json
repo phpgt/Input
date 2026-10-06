@@ -4,13 +4,13 @@
 	"license": "MIT",
 
 	"require": {
-		"php": ">=8.3",
-		"phpgt/http": "1.*",
-		"phpgt/json": "^2.1"
+		"php": ">=8.4",
+		"phpgt/http": "^2.0",
+		"phpgt/json": "^2.3"
 	},
 
 	"require-dev": {
-		"phpstan/phpstan": "^1.10",
+		"phpstan/phpstan": "^2.2",
 		"phpunit/phpunit": "^12.5",
 		"phpmd/phpmd": "^2.13",
 		"squizlabs/php_codesniffer": "^3.7"
@@ -53,5 +53,10 @@
 			"type": "github",
 			"url": "https://github.com/sponsors/PhpGt"
 		}
-	]
+	],
+	"config": {
+		"platform": {
+			"php": "8.4.0"
+		}
+	}
 }

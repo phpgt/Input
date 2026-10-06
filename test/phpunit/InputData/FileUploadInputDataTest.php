@@ -6,9 +6,7 @@ use GT\Input\InputData\FileUploadInputData;
 use GT\Input\Test\Helper\Reflection;
 
 class FileUploadInputDataTest extends TestCase {
-	/**
-	 * @dataProvider dataFilesSuperglobal
-	 */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataFilesSuperglobal")]
 	public function testNormaliseArray(array $files) {
 // The $_FILES superglobal is an odd shape. Depending on the use of [] in the
 // parameter name, the contained uploadData array(s) could contain either strings
