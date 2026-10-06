@@ -9,7 +9,7 @@ use GT\Input\Trigger\Trigger;
 use PHPUnit\Framework\TestCase;
 
 class TriggerTest extends TestCase {
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWhenMatchesInput(Input $input):void {
 		$whenCriteria = Helper::getRandomWhenCriteria($input, true);
 		$trigger = new Trigger($input);
@@ -17,7 +17,7 @@ class TriggerTest extends TestCase {
 		self::assertTrue($trigger->fire());
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWhenNotMatchesInput(Input $input):void {
 		$whenCriteria = Helper::getRandomWhenCriteria($input, false);
 		$trigger = new Trigger($input);
@@ -47,7 +47,7 @@ class TriggerTest extends TestCase {
 		self::assertTrue($sut->fire());
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWithSingleKey(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, 1);
 		$trigger = new Trigger($input);
@@ -64,7 +64,7 @@ class TriggerTest extends TestCase {
 		self::assertcount(1, $callbackKeys);
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testFiresOr(Input $input):void {
 		$trigger = new Trigger($input);
 		$trigger->when("this-does-not-exist");
@@ -82,7 +82,7 @@ class TriggerTest extends TestCase {
 		self::assertGreaterThan(0, $orCount);
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testExceptionOrThrown(Input $input):void {
 		self::expectException(CallOrOutOfSequenceException::class);
 		$trigger = new Trigger($input);
@@ -92,7 +92,7 @@ class TriggerTest extends TestCase {
 		});
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWithMultipleKeysSequential(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, rand(2, 100));
 		$trigger = new Trigger($input);
@@ -113,7 +113,7 @@ class TriggerTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWithMultipleKeysVariableArguments(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, rand(2, 100));
 		$trigger = new Trigger($input);
@@ -129,7 +129,7 @@ class TriggerTest extends TestCase {
 		self::assertEquals($keys, $callbackKeys);
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWithoutSingleKey(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, 1);
 		$trigger = new Trigger($input);
@@ -145,7 +145,7 @@ class TriggerTest extends TestCase {
 		self::assertNotContains($keys[0], $callbackKeys);
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWithoutMultipleKeysSequential(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, rand(2, 100));
 		$trigger = new Trigger($input);
@@ -166,7 +166,7 @@ class TriggerTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWithoutMultipleKeysVariableArguments(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, rand(2, 100));
 		$trigger = new Trigger($input);
@@ -184,7 +184,7 @@ class TriggerTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testWithAll(Input $input):void {
 		$trigger = new Trigger($input);
 		$trigger->withAll();
@@ -201,7 +201,7 @@ class TriggerTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testSetTriggerMatch(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, rand(2, 100));
 		$trigger = new Trigger($input);
@@ -213,7 +213,7 @@ class TriggerTest extends TestCase {
 		self::assertTrue($trigger->fire());
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testSetTriggerNoMatch(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, rand(2, 100));
 		$trigger = new Trigger($input);
@@ -225,7 +225,7 @@ class TriggerTest extends TestCase {
 		self::assertFalse($trigger->fire());
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testSetTriggerSomeMatch(Input $input):void {
 		$keys = Helper::getKeysFromInput($input, rand(2, 100));
 		$trigger = new Trigger($input);
@@ -242,7 +242,7 @@ class TriggerTest extends TestCase {
 		self::assertFalse($trigger->fire());
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testCallWithArgs(Input $input):void {
 		$trigger = new Trigger($input);
 		$param1 = "one";
@@ -263,7 +263,7 @@ class TriggerTest extends TestCase {
 		self::assertContains($param3, $callbackArgs);
 	}
 
-	/** @dataProvider dataInput */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataInput")]
 	public function testFiresWithNoMatches(Input $input):void {
 		$trigger = new Trigger($input);
 		self::assertTrue($trigger->fire());

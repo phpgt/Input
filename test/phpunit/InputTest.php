@@ -88,7 +88,7 @@ class InputTest extends TestCase {
 		$input->getPutFileStream();
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetQueryString(array $get, array $post):void {
 		$input = new Input($get, $post);
 
@@ -105,7 +105,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetPostField(array $get, array $post):void {
 		$input = new Input($get, $post);
 
@@ -122,7 +122,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetFileFieldSingle(array $get, array $post):void {
 		$files = self::FAKE_FILE;
 		$input = new Input($get, $post, $files);
@@ -163,21 +163,21 @@ class InputTest extends TestCase {
 		$input->getFile("upload");
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetInvalidDataType(array $get, array $post):void {
 		self::expectException(InvalidInputMethodException::class);
 		$input = new Input($get, $post);
 		$input->get("test", "WRONG_TYPE");
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetAllInvalidDataType(array $get, array $post):void {
 		self::expectException(InvalidInputMethodException::class);
 		$input = new Input($get, $post);
 		$input->getAll("WRONG_TYPE");
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetAllQueryString(array $get, array $post):void {
 		$input = new Input($get, $post);
 		$queryString = $input->getAll(Input::DATA_QUERYSTRING);
@@ -191,7 +191,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetAllPostFields(array $get, array $post):void {
 		$input = new Input($get, $post);
 		$postFields = $input->getAll(Input::DATA_BODY);
@@ -205,7 +205,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetAllFileFields(array $get, array $post):void {
 		$files = self::FAKE_FILE;
 		$input = new Input($get, $post, $files);
@@ -224,7 +224,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetAll(array $get, array $post):void {
 		$input = new Input($get, $post);
 		$combined = $input->getAll();
@@ -239,7 +239,7 @@ class InputTest extends TestCase {
 		self::assertFalse(isset($combined->thisDoesNotExist));
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testGetAllMethods(array $get, array $post):void {
 		$input = new Input($get, $post);
 		$getVariables = $input->getAll(Input::DATA_QUERYSTRING);
@@ -251,7 +251,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testDo(string $doName):void {
 		$input = new Input(["do" => $doName]);
 		$trigger = $input->do($doName);
@@ -259,14 +259,14 @@ class InputTest extends TestCase {
 		self::assertTrue($trigger->fire(), "Triggers should fire");
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testNotDo(string $doName):void {
 		$input = new Input(["do" => "submit"]);
 		$trigger = $input->do($doName);
 		self::assertFalse($trigger->fire());
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testWhen(string $whenName):void {
 		$whenValue = uniqid("whenValue");
 
@@ -281,7 +281,7 @@ class InputTest extends TestCase {
 		self::assertTrue($trigger->fire());
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testNotWhen(string $whenName):void {
 		$whenValue = uniqid("whenValue");
 
@@ -295,7 +295,7 @@ class InputTest extends TestCase {
 		self::assertFalse($trigger->fire());
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testWhenKey(string $whenName):void {
 		$whenValue = uniqid("whenValue");
 
@@ -307,7 +307,7 @@ class InputTest extends TestCase {
 		self::assertTrue($trigger->fire());
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testWhenNotKey(string $whenName):void {
 		$whenValue = uniqid("whenValue");
 
@@ -319,7 +319,7 @@ class InputTest extends TestCase {
 		self::assertFalse($trigger->fire());
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testWhenKeySurrounded(string $whenName):void {
 		$whenValue = uniqid("whenValue");
 
@@ -333,7 +333,7 @@ class InputTest extends TestCase {
 		self::assertTrue($trigger->fire());
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testWhenKeyMultiple(string $whenName):void {
 		$whenName2 = "$whenName-2";
 		$whenValue = uniqid("whenValue");
@@ -349,7 +349,7 @@ class InputTest extends TestCase {
 		self::assertTrue($trigger->fire());
 	}
 
-	/** @dataProvider dataRandomString */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomString")]
 	public function testWhenKeyMultipleMissing(string $whenName):void {
 		$whenName2 = "$whenName-2";
 		$whenValue = uniqid("whenValue");
@@ -365,7 +365,7 @@ class InputTest extends TestCase {
 		self::assertFalse($trigger->fire());
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testWithExist(array $get, array $post):void {
 		$withKeys = [];
 
@@ -393,7 +393,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testWithNotExist(array $get, array $post):void {
 		$withKeys = [];
 		$combined = array_merge($get, $post);
@@ -408,7 +408,7 @@ class InputTest extends TestCase {
 		$trigger = $input->with(...$withKeys);
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testWithAll(array $get, array $post):void {
 		$input = new Input($get, $post);
 		$trigger = $input->withAll();
@@ -425,7 +425,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testNoWith(array $get, array $post):void {
 		$post["example-trigger"] = "testtesttest";
 
@@ -444,7 +444,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testWithout(array $get, array $post):void {
 		$withoutKeys = [];
 
@@ -479,7 +479,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testSettingOwnData(array $get, array $post):void {
 		$input = new Input($get, $post);
 		$originalInputCount = count($input);
@@ -489,7 +489,7 @@ class InputTest extends TestCase {
 		self::assertEquals($originalInputCount + 1, count($input));
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testUnsettingOwnData(array $get, array $post):void {
 		$input = new Input($get, $post);
 		$originalInputCount = count($input);
@@ -569,7 +569,7 @@ class InputTest extends TestCase {
 		self::assertEquals($dateTime, $input->getDateTime("a-date-in-rss-format"));
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testContains($get, $post):void {
 		$files = self::FAKE_FILE;
 		$input = new Input($get, $post, $files);
@@ -585,7 +585,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testNotContains($get, $post):void {
 		$files = self::FAKE_FILE;
 		$input = new Input($get, $post, $files);
@@ -599,7 +599,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testContainsIndividualParts($get, $post):void {
 		$files = self::FAKE_FILE;
 		$input = new Input($get, $post, $files);
@@ -668,7 +668,7 @@ class InputTest extends TestCase {
 		}
 	}
 
-	/** @dataProvider dataRandomGetPost */
+	#[\PHPUnit\Framework\Attributes\DataProvider("dataRandomGetPost")]
 	public function testContainsThrowsExceptionOnIncorrectType($get, $post) {
 		self::expectException(InvalidInputMethodException::class);
 		$input = new Input($get, $post);
