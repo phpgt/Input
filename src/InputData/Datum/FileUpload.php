@@ -1,7 +1,7 @@
 <?php
 namespace GT\Input\InputData\Datum;
 
-use Gt\Http\Stream;
+use GT\Http\Stream;
 use GT\Input\UploadedFileMoveException;
 use GT\Input\UploadedFileSecurityException;
 use InvalidArgumentException;

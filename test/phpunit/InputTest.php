@@ -12,9 +12,9 @@ use GT\Input\InvalidInputMethodException;
 use GT\Input\MissingInputParameterException;
 use GT\Input\Test\Helper\Helper;
 use GT\Input\Trigger\Trigger;
-use Gt\Json\JsonObject;
-use Gt\Json\JsonPrimitive\JsonArrayPrimitive;
-use Gt\Json\JsonPrimitive\JsonStringPrimitive;
+use GT\Json\JSONObject;
+use GT\Json\JsonPrimitive\JsonArrayPrimitive;
+use GT\Json\JsonPrimitive\JsonStringPrimitive;
 use PHPUnit\Framework\TestCase;
 
 class InputTest extends TestCase {
@@ -727,9 +727,9 @@ class InputTest extends TestCase {
 		self::assertSame(1, $array[0]);
 		self::assertSame(2, $array[1]);
 		self::assertSame(3, $array[2]);
-		/** @var JsonObject $thirdArrayElement */
+		/** @var JSONObject $thirdArrayElement */
 		$thirdArrayElement = $array[3];
-		self::assertInstanceOf(JsonObject::class, $thirdArrayElement);
+		self::assertInstanceOf(JSONObject::class, $thirdArrayElement);
 		self::assertSame("Cody", $thirdArrayElement->getString("name"));
 	}
 

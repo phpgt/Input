@@ -4,9 +4,9 @@
 	"license": "MIT",
 
 	"require": {
-		"php": ">=8.3",
-		"phpgt/http": "1.*",
-		"phpgt/json": "^2.1"
+		"php": ">=8.4",
+		"phpgt/http": "^2.0",
+		"phpgt/json": "^2.3"
 	},
 
 	"require-dev": {
@@ -53,5 +53,10 @@
 			"type": "github",
 			"url": "https://github.com/sponsors/PhpGt"
 		}
-	]
+	],
+	"config": {
+		"platform": {
+			"php": "8.4.0"
+		}
+	}
 }
