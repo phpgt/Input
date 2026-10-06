@@ -1,8 +1,8 @@
 <?php
-namespace Gt\Input\InputData;
+namespace GT\Input\InputData;
 
-use Gt\Input\Input;
-use Gt\Input\WithWithoutClashingException;
+use GT\Input\Input;
+use GT\Input\WithWithoutClashingException;
 
 class InputDataFactory {
 	/**

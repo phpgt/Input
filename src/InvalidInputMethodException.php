@@ -1,4 +1,4 @@
 <?php
-namespace Gt\Input;
+namespace GT\Input;
 
 class InvalidInputMethodException extends InputException {}

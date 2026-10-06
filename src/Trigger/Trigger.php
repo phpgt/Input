@@ -1,9 +1,9 @@
 <?php
-namespace Gt\Input\Trigger;
+namespace GT\Input\Trigger;
 
-use Gt\Input\CallOrOutOfSequenceException;
-use Gt\Input\Input;
-use Gt\Input\InputData\InputDataFactory;
+use GT\Input\CallOrOutOfSequenceException;
+use GT\Input\Input;
+use GT\Input\InputData\InputDataFactory;
 
 class Trigger {
 	protected Input $input;
@@ -159,7 +159,7 @@ class Trigger {
 		);
 
 		foreach($this->callbacks as $callback) {
-			/** @var $callback \Gt\Input\Trigger\Callback */
+			/** @var $callback \GT\Input\Trigger\Callback */
 			$callback->call($fields);
 		}
 	}

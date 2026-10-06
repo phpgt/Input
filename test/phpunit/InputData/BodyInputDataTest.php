@@ -1,11 +1,11 @@
 <?php
 
-namespace Gt\Input\Test\InputData;
+namespace GT\Input\Test\InputData;
 
-use Gt\Input\InputData\BodyInputData;
-use Gt\Input\InputData\Datum\InputDatum;
-use Gt\Input\InputData\Datum\MultipleInputDatum;
-use Gt\Input\Test\Helper\Helper;
+use GT\Input\InputData\BodyInputData;
+use GT\Input\InputData\Datum\InputDatum;
+use GT\Input\InputData\Datum\MultipleInputDatum;
+use GT\Input\Test\Helper\Helper;
 use PHPUnit\Framework\TestCase;
 
 class BodyInputDataTest extends TestCase {

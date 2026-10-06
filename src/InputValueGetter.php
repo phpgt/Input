@@ -1,15 +1,15 @@
 <?php
-namespace Gt\Input;
+namespace GT\Input;
 
 use DateTime;
 use DateTimeInterface;
 use Exception;
-use Gt\Input\InputData\CombinedInputData;
-use Gt\Input\InputData\Datum\FileUpload;
-use Gt\Input\InputData\Datum\InputDatum;
-use Gt\Input\InputData\Datum\MultipleInputDatum;
-use Gt\Input\InputData\FileUploadInputData;
-use Gt\Input\InputData\InputData;
+use GT\Input\InputData\CombinedInputData;
+use GT\Input\InputData\Datum\FileUpload;
+use GT\Input\InputData\Datum\InputDatum;
+use GT\Input\InputData\Datum\MultipleInputDatum;
+use GT\Input\InputData\FileUploadInputData;
+use GT\Input\InputData\InputData;
 use TypeError;
 
 trait InputValueGetter {

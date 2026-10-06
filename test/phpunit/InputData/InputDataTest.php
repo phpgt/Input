@@ -1,8 +1,8 @@
 <?php
 
-namespace Gt\Input\Test\InputData;
+namespace GT\Input\Test\InputData;
 
-use Gt\Input\InputData\InputData;
+use GT\Input\InputData\InputData;
 use PHPUnit\Framework\TestCase;
 
 class InputDataTest extends TestCase {

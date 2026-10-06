@@ -1,6 +1,6 @@
 <?php
-namespace Gt\Input;
+namespace GT\Input;
 
-use Gt\Http\Stream;
+use GT\Http\Stream;
 
 class BodyStream extends Stream {}

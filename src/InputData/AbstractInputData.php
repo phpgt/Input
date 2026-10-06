@@ -1,12 +1,12 @@
 <?php
-namespace Gt\Input\InputData;
+namespace GT\Input\InputData;
 
 use ArrayAccess;
 use Countable;
-use Gt\Input\InputData\Datum\MultipleInputDatum;
-use Gt\Input\InputValueGetter;
+use GT\Input\InputData\Datum\MultipleInputDatum;
+use GT\Input\InputValueGetter;
 use Iterator;
-use Gt\Input\InputData\Datum\InputDatum;
+use GT\Input\InputData\Datum\InputDatum;
 
 /**
  * @implements ArrayAccess<string, string|InputDatum>

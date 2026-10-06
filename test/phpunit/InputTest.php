@@ -1,20 +1,20 @@
 <?php
-namespace Gt\Input\Test;
+namespace GT\Input\Test;
 
 use DateTime;
-use Gt\Input\DataNotCompatibleFormatException;
-use Gt\Input\DataNotFileUploadException;
-use Gt\Input\Input;
-use Gt\Input\InputData\Datum\FileUpload;
-use Gt\Input\InputData\Datum\StreamNotAvailableException;
-use Gt\Input\InputData\InputData;
-use Gt\Input\InvalidInputMethodException;
-use Gt\Input\MissingInputParameterException;
-use Gt\Input\Test\Helper\Helper;
-use Gt\Input\Trigger\Trigger;
-use Gt\Json\JsonObject;
-use Gt\Json\JsonPrimitive\JsonArrayPrimitive;
-use Gt\Json\JsonPrimitive\JsonStringPrimitive;
+use GT\Input\DataNotCompatibleFormatException;
+use GT\Input\DataNotFileUploadException;
+use GT\Input\Input;
+use GT\Input\InputData\Datum\FileUpload;
+use GT\Input\InputData\Datum\StreamNotAvailableException;
+use GT\Input\InputData\InputData;
+use GT\Input\InvalidInputMethodException;
+use GT\Input\MissingInputParameterException;
+use GT\Input\Test\Helper\Helper;
+use GT\Input\Trigger\Trigger;
+use GT\Json\JSONObject;
+use GT\Json\JsonPrimitive\JsonArrayPrimitive;
+use GT\Json\JsonPrimitive\JsonStringPrimitive;
 use PHPUnit\Framework\TestCase;
 
 class InputTest extends TestCase {
@@ -727,9 +727,9 @@ class InputTest extends TestCase {
 		self::assertSame(1, $array[0]);
 		self::assertSame(2, $array[1]);
 		self::assertSame(3, $array[2]);
-		/** @var JsonObject $thirdArrayElement */
+		/** @var JSONObject $thirdArrayElement */
 		$thirdArrayElement = $array[3];
-		self::assertInstanceOf(JsonObject::class, $thirdArrayElement);
+		self::assertInstanceOf(JSONObject::class, $thirdArrayElement);
 		self::assertSame("Cody", $thirdArrayElement->getString("name"));
 	}
 

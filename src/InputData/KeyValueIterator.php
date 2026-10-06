@@ -1,7 +1,7 @@
 <?php
-namespace Gt\Input\InputData;
+namespace GT\Input\InputData;
 
-use Gt\Input\InputData\Datum\InputDatum;
+use GT\Input\InputData\Datum\InputDatum;
 
 trait KeyValueIterator {
 	/** @var int */
@@ -33,7 +33,7 @@ trait KeyValueIterator {
 		if(is_array($this->parameters)) {
 			$keys = array_keys($this->parameters);
 		}
-		else if($this->parameters instanceof InputData) {
+		else {
 			$keys = $this->parameters->getKeys();
 		}
 

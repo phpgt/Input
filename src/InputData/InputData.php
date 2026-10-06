@@ -1,9 +1,9 @@
 <?php
-namespace Gt\Input\InputData;
+namespace GT\Input\InputData;
 
-use Gt\Input\InputData\Datum\InputDatum;
-use Gt\Input\InputData\Datum\MultipleInputDatum;
-use Gt\Input\InputValueGetter;
+use GT\Input\InputData\Datum\InputDatum;
+use GT\Input\InputData\Datum\MultipleInputDatum;
+use GT\Input\InputValueGetter;
 
 class InputData extends AbstractInputData {
 	/** @param iterable<string,string>|iterable<string, array<string>>|iterable<InputData>...$sources */

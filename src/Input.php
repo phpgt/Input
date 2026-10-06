@@ -1,31 +1,31 @@
 <?php
-namespace Gt\Input;
+namespace GT\Input;
 
 use ArrayAccess;
 use Countable;
-use Gt\Input\Trigger\NeverTrigger;
-use Gt\Json\JsonDecodeException;
-use Gt\Json\JsonObject;
-use Gt\Json\JsonObjectBuilder;
+use GT\Input\Trigger\NeverTrigger;
+use GT\Json\JSONDecodeException;
+use GT\Json\JSONObject;
+use GT\Json\JSONObjectBuilder;
 use Iterator;
 use Psr\Http\Message\StreamInterface;
-use Gt\Input\Trigger\Trigger;
-use Gt\Input\InputData\InputData;
-use Gt\Input\InputData\Datum\StreamNotAvailableException;
-use Gt\Input\InputData\Datum\InputDatum;
-use Gt\Input\InputData\KeyValueArrayAccess;
-use Gt\Input\InputData\KeyValueCountable;
-use Gt\Input\InputData\KeyValueIterator;
-use Gt\Input\InputData\BodyInputData;
-use Gt\Input\InputData\CombinedInputData;
-use Gt\Input\InputData\FileUploadInputData;
-use Gt\Input\InputData\QueryStringInputData;
+use GT\Input\Trigger\Trigger;
+use GT\Input\InputData\InputData;
+use GT\Input\InputData\Datum\StreamNotAvailableException;
+use GT\Input\InputData\Datum\InputDatum;
+use GT\Input\InputData\KeyValueArrayAccess;
+use GT\Input\InputData\KeyValueCountable;
+use GT\Input\InputData\KeyValueIterator;
+use GT\Input\InputData\BodyInputData;
+use GT\Input\InputData\CombinedInputData;
+use GT\Input\InputData\FileUploadInputData;
+use GT\Input\InputData\QueryStringInputData;
 
 /**
  * @implements ArrayAccess<string, ?string>
  * @implements Iterator<string, ?string>
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
+ * @SuppressWarnings("PHPMD.TooManyPublicMethods")
  */
 class Input implements ArrayAccess, Countable, Iterator {
 	use InputValueGetter;
@@ -216,13 +216,13 @@ class Input implements ArrayAccess, Countable, Iterator {
 		}
 	}
 
-	public function getBodyJson():?JsonObject {
-		$jsonBuilder = new JsonObjectBuilder();
+	public function getBodyJson():?JSONObject {
+		$jsonBuilder = new JSONObjectBuilder();
 
 		try {
 			return $jsonBuilder->fromJsonString($this->bodyStream->getContents());
 		}
-		catch(JsonDecodeException) {
+		catch(JSONDecodeException) {
 			return null;
 		}
 	}
@@ -269,7 +269,7 @@ class Input implements ArrayAccess, Countable, Iterator {
 		return $this->select(...$keys);
 	}
 
-	/** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
+	/** @SuppressWarnings("PHPMD.UnusedLocalVariable") */
 	public function selectPrefix(string $prefix):Trigger {
 		$keys = [];
 

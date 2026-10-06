@@ -1,9 +1,9 @@
 <?php
-namespace Gt\Input\Test\InputData;
+namespace GT\Input\Test\InputData;
 
 use PHPUnit\Framework\TestCase;
-use Gt\Input\InputData\FileUploadInputData;
-use Gt\Input\Test\Helper\Reflection;
+use GT\Input\InputData\FileUploadInputData;
+use GT\Input\Test\Helper\Reflection;
 
 class FileUploadInputDataTest extends TestCase {
 	/**
