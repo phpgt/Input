@@ -24,8 +24,8 @@ use GT\Input\InputData\QueryStringInputData;
 /**
  * @implements ArrayAccess<string, ?string>
  * @implements Iterator<string, ?string>
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
+ * @SuppressWarnings("PHPMD.TooManyPublicMethods")
  */
 class Input implements ArrayAccess, Countable, Iterator {
 	use InputValueGetter;
@@ -269,7 +269,7 @@ class Input implements ArrayAccess, Countable, Iterator {
 		return $this->select(...$keys);
 	}
 
-	/** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
+	/** @SuppressWarnings("PHPMD.UnusedLocalVariable") */
 	public function selectPrefix(string $prefix):Trigger {
 		$keys = [];
 
