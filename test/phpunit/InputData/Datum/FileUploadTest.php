@@ -6,9 +6,9 @@ use GT\Input\InputData\Datum\FileUploadUnserializeException;
 use PHPUnit\Framework\TestCase;
 
 class FileUploadTest extends TestCase {
-	public function testUnserializeThrowsException():void {
-		$fileUpload = new FileUpload("example.txt", "text/plain", 12, "/tmp/upload");
-		$serialized = serialize($fileUpload);
+	public function testWakeup_rejectsUnserialisation():void {
+		$sut = new FileUpload("example.txt", "text/plain", 12, "/tmp/upload");
+		$serialized = serialize($sut);
 
 		self::expectException(FileUploadUnserializeException::class);
 		self::expectExceptionMessage(
