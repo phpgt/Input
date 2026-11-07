@@ -120,7 +120,7 @@ trait InputValueGetter {
 	public function getDateTime(
 		string $key,
 		?string $format = null
-	):?DateTimeInterface {
+	):?DateTime {
 		$value = $this->getString($key);
 		if(is_null($value) || strlen($value) === 0) {
 			return null;

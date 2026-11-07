@@ -556,6 +556,37 @@ class InputTest extends TestCase {
 		self::assertEquals($dateTime, $input->getDateTime("a-date-without-timezone-or-seconds"));
 	}
 
+	#[\PHPUnit\Framework\Attributes\DataProvider("mutableDateTimes")]
+	public function testGetDateTime_returnsMutableDateTime(string $value, ?string $format, string $expected):void {
+		$sut = new Input(["date-from" => $value]);
+
+		$dateTime = $sut->getDateTime("date-from", $format);
+		self::assertInstanceOf(DateTime::class, $dateTime);
+		self::assertSame($expected, $dateTime->format("Y-m-d H:i:s P"));
+		self::assertSame($dateTime, $dateTime->modify("+1 day"));
+		self::assertSame("2026-11-08", $dateTime->format("Y-m-d"));
+		self::assertSame($expected, $sut->getDateTime("date-from", $format)->format("Y-m-d H:i:s P"));
+	}
+
+	public static function mutableDateTimes():iterable {
+		yield "automatic parsing" => ["2026-11-07T14:30:45+02:00", null, "2026-11-07 14:30:45 +02:00"];
+		yield "explicit format" => ["07/11/2026", "!d/m/Y", "2026-11-07 00:00:00 +00:00"];
+		yield "formatted timezone" => ["07/11/2026 14:30 +0230", "!d/m/Y H:i O", "2026-11-07 14:30:00 +02:30"];
+	}
+
+	#[\PHPUnit\Framework\Attributes\DataProvider("invalidFormattedDateTimes")]
+	public function testGetDateTime_rejectsInvalidFormattedValue(string $value):void {
+		$sut = new Input(["date-from" => $value]);
+		$this->expectException(DataNotCompatibleFormatException::class);
+
+		$sut->getDateTime("date-from", "!d/m/Y");
+	}
+
+	public static function invalidFormattedDateTimes():iterable {
+		yield "unrecognised date" => ["not a date"];
+		yield "wrong format" => ["2026-11-07"];
+	}
+
 	public function testGetDateTimeInvalid():void {
 		$input = new Input(self::FAKE_DATA);
 		self::expectException(DataNotCompatibleFormatException::class);
