@@ -32,6 +32,13 @@ class FileUpload extends InputDatum implements UploadedFileInterface {
 		parent::__construct($originalFilename);
 	}
 
+	public function __wakeup():void {
+		throw new FileUploadUnserializeException(
+			"FileUpload cannot be unserialized because uploaded files "
+			. "are only available during the original request."
+		);
+	}
+
 	public function getFileInfo():SplFileInfo {
 		return new SplFileInfo($this->tempFilePath);
 	}
