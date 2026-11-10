@@ -1,6 +1,8 @@
 <?php
 namespace GT\Input\InputData\Datum;
 
+use GT\Input\UploadedFileMoveException;
+
 class FailedFileUpload extends FileUpload {
 	protected int $errorCode;
 
@@ -21,13 +23,21 @@ class FailedFileUpload extends FileUpload {
 		);
 	}
 
+	public function moveTo(string $targetPath):void {
+		throw new UploadedFileMoveException(
+			"Unable to move uploaded file to \"$targetPath\": "
+			. $this->getErrorMessage(),
+			$this->errorCode,
+		);
+	}
+
 	/** @inheritDoc */
 	public function getError():int {
 		return $this->errorCode;
 	}
 
 	public function getErrorMessage():string {
-		$msg = "";
+		$msg = "The file upload failed with error code $this->errorCode.";
 
 		switch($this->errorCode) {
 		case UPLOAD_ERR_INI_SIZE:
