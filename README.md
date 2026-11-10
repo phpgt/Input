@@ -8,6 +8,8 @@ passed only the user input they require, rather than having unmitigated read/wri
 
 Type-safe functions allow more predictable functionality, such as `$input->getFileUpload("photo")`, `$input->getDateTime("date-of-birth")`, and `$input->getMultipleString("pizza-topping")`.
 
+`getDateTime()` returns a mutable `DateTime`, or `null` for an empty or missing value. Pass a format as the second argument to parse a specific date format, for example `$input->getDateTime("date-of-birth", "!d/m/Y")`. Invalid values throw `DataNotCompatibleFormatException`.
+
 ***
 
 <a href="https://github.com/PhpGt/Input/actions" target="_blank">
