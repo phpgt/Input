@@ -572,6 +572,18 @@ class InputTest extends TestCase {
 		yield "HTML limit" => [UPLOAD_ERR_FORM_SIZE, "MAX_FILE_SIZE"];
 	}
 
+	public function testValidatePostSize_usesCapturedRequestMetadata():void {
+		$limit = ini_parse_quantity(ini_get("post_max_size"));
+		$sut = new Input(server: [
+			"REQUEST_METHOD" => "POST",
+			"CONTENT_TYPE" => "application/x-www-form-urlencoded",
+			"CONTENT_LENGTH" => (string)($limit + 1),
+		]);
+
+		$this->expectException(\GT\Input\PostSizeExceededException::class);
+		$sut->validatePostSize();
+	}
+
 	public function testGetDateTime():void {
 		$dateTime = new DateTime("2005-08-15T15:52");
 
