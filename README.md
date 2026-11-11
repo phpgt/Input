@@ -88,8 +88,6 @@ $photoUpload->moveTo("data/upload/$profileId.jpg");
 
 When PHP rejects an upload, `getFile()` returns a `FailedFileUpload`. Check its `getError()` or `getErrorMessage()` before moving it. Calling `moveTo()` on a failed upload throws `UploadedFileMoveException` with PHP's upload error code and a readable reason, including `upload_max_filesize` or the form's `MAX_FILE_SIZE` limit when applicable.
 
-When the whole form exceeds PHP's `post_max_size`, PHP discards both form fields and uploaded files. Pass request metadata through the `server` constructor argument and call `validatePostSize()` inside the application's response error handler. Oversized form requests throw `PostSizeExceededException`, an HTTP 413 exception with a readable limit and the request's declared content length. This is a request-level failure, separate from individual failed uploads.
-
 Features at a glance
 --------------------
 

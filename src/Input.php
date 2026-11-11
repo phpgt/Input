@@ -47,7 +47,6 @@ class Input implements ArrayAccess, Countable, Iterator {
 	 * @param array<string, string> $get
 	 * @param array<string, string> $post
 	 * @param array<string, array<int|string, string|array<int|string>>> $files
-	 * @param array<string, string> $server
 	 * @param string $bodyPath
 	 */
 	public function __construct(
@@ -56,7 +55,6 @@ class Input implements ArrayAccess, Countable, Iterator {
 		array $files = [],
 		string $bodyPath = "php://input",
 		?string $requestMethod = "GET",
-		private readonly array $server = [],
 	) {
 		$this->bodyStream = new BodyStream($bodyPath);
 		$this->requestMethod = strtoupper($requestMethod);
@@ -70,10 +68,6 @@ class Input implements ArrayAccess, Countable, Iterator {
 			$this->bodyParameters,
 			$this->fileUploadParameters
 		);
-	}
-
-	public function validatePostSize():void {
-		(new PostSizeLimit($this->server, $this->requestMethod))->validate();
 	}
 
 	/**
