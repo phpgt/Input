@@ -10,6 +10,8 @@ use GT\Input\InputData\Datum\StreamNotAvailableException;
 use GT\Input\InputData\InputData;
 use GT\Input\InvalidInputMethodException;
 use GT\Input\MissingInputParameterException;
+use GT\Input\UploadedFileMoveException;
+use GT\Input\InputData\Datum\FailedFileUpload;
 use GT\Input\Test\Helper\Helper;
 use GT\Input\Trigger\Trigger;
 use GT\Json\JSONObject;
@@ -544,6 +546,30 @@ class InputTest extends TestCase {
 		self::assertSame(true, $input->getBool("this-is-positive"));
 		self::assertNull($input->getBool("empty-value"));
 		self::assertNull($input->getBool("not-set"));
+	}
+
+	#[\PHPUnit\Framework\Attributes\DataProvider("oversizedUploads")]
+	public function testGetFile_oversizedUploadReportsItsLimitWhenMoved(int $error, string $directive):void {
+		$sut = new Input(files: ["photo" => [
+			"name" => "photo.jpg",
+			"type" => "",
+			"tmp_name" => "",
+			"error" => $error,
+			"size" => 0,
+		]]);
+
+		$file = $sut->getFile("photo");
+		self::assertInstanceOf(FailedFileUpload::class, $file);
+		self::assertSame($error, $file->getError());
+		$this->expectException(UploadedFileMoveException::class);
+		$this->expectExceptionMessage($directive);
+		$this->expectExceptionCode($error);
+		$file->moveTo("unused/photo.jpg");
+	}
+
+	public static function oversizedUploads():iterable {
+		yield "PHP limit" => [UPLOAD_ERR_INI_SIZE, "upload_max_filesize"];
+		yield "HTML limit" => [UPLOAD_ERR_FORM_SIZE, "MAX_FILE_SIZE"];
 	}
 
 	public function testGetDateTime():void {

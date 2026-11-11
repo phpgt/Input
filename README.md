@@ -86,6 +86,8 @@ if($photoUpload instanceof FailedFileUpload) {
 $photoUpload->moveTo("data/upload/$profileId.jpg");
 ```
 
+When PHP rejects an upload, `getFile()` returns a `FailedFileUpload`. Check its `getError()` or `getErrorMessage()` before moving it. Calling `moveTo()` on a failed upload throws `UploadedFileMoveException` with PHP's upload error code and a readable reason, including `upload_max_filesize` or the form's `MAX_FILE_SIZE` limit when applicable.
+
 Features at a glance
 --------------------
 
